@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "weather_gui"
+		},
+		{
+			"path": "weather_api"
+		}
+	],
+	"settings": {}
+}
