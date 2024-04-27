@@ -176,7 +176,7 @@ const WeatherCard: React.FC = () => {
             {!searchClicked ? (
               <>
                 <div className="powered-by-blockchain">
-                  Powered by Blockchain
+                   Powered by Blockchain
                 </div>
               </>
             ) : (
