@@ -175,7 +175,7 @@ const WeatherCard: React.FC = () => {
   <div className="flex items-left">
     {!searchClicked ? (
       <>
-        <img src="src/components/icons8-rain.gif" alt="Rain Cloud" className="w-24 h-24" />
+        <img src="https://th.bing.com/th/id/OIP.j8oglFHmWlpRNtT-qoS5AQHaHa?w=154&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" alt="Rain Cloud" className="w-24 h-24" />
         <img src="src/components/icons8-rain.gif" alt="Rain Cloud" className="w-24 h-24" />
         <img src="src/components/icons8-rain.gif" alt="Rain Cloud" className="w-24 h-24" />
       </>
