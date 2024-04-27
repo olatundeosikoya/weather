@@ -19,15 +19,15 @@ const WeatherCard: React.FC = () => {
   const [error, setError] = useState("");
   const [searchClicked, setSearchClicked] = useState(false);
   const cities = [
-    "london", "dubalin", "washington", "paris", "berlin", "madrid", 
-    "rome", "tokyo", "beijing", "sydney", "cairo", "moscow", 
-    "lagos", "toronto", "mumbai", "jakarta", "seoul", "nairobi", 
-    "lima", "bangkok", "athens", "vienna", "brussels", "helsinki", 
-    "oslo", "lisbon", "stockholm", "budapest", "warsaw", "dubai", 
-    "singapore", "hanoi", "manila", "riyadh", "santiago", "bogota", 
-    "havana", "kingston", "tashkent", "tehran", "baghdad", "algiers", 
+    "london", "dubalin", "washington", "paris", "berlin", "madrid",
+    "rome", "tokyo", "beijing", "sydney", "cairo", "moscow",
+    "lagos", "toronto", "mumbai", "jakarta", "seoul", "nairobi",
+    "lima", "bangkok", "athens", "vienna", "brussels", "helsinki",
+    "oslo", "lisbon", "stockholm", "budapest", "warsaw", "dubai",
+    "singapore", "hanoi", "manila", "riyadh", "santiago", "bogota",
+    "havana", "kingston", "tashkent", "tehran", "baghdad", "algiers",
     "accra", "harare", "kampala", "dakar", "khartoum", "tunis"
-  ];  
+  ];
 
   const handleSearch = () => {
     console.log("Fetching Weather Data...");
@@ -58,8 +58,8 @@ const WeatherCard: React.FC = () => {
         console.error(error);
         setSeismicData(undefined);
       });
-       // Set citySelected to true when a city is searched
-      setSearchClicked(true);
+    // Set citySelected to true when a city is searched
+    setSearchClicked(true);
   };
 
   return (
@@ -102,57 +102,57 @@ const WeatherCard: React.FC = () => {
       <Divider />
       {data ? (
         <CardBody>
-        <div className="flex flex-col items-center">
-          <h1 className="text-3xl font-bold">{data.city.charAt(0).toUpperCase() + data.city.slice(1)}</h1>
-          <p className="text-sm text-gray-500">Today</p>
-          {data.temperature > 20 ? (
-            <div>
-              <TiWeatherSunny className="w-36 h-36" />
+          <div className="flex flex-col items-center">
+            <h1 className="text-3xl font-bold">{data.city.charAt(0).toUpperCase() + data.city.slice(1)}</h1>
+            <p className="text-sm text-gray-500">Today</p>
+            {data.temperature > 20 ? (
+              <div>
+                <TiWeatherSunny className="w-36 h-36" />
+              </div>
+            ) : (
+              <div>
+                <TiWeatherDownpour className="w-36 h-36" />
+              </div>
+            )}
+            <p className="text-3xl font-bold">{data.temperature}°C</p>
+            <p className="text-lg">Humidity: {data.humidity}%</p>
+            <p className="text-lg">Wind: {data.wind} km/h</p>
+            <p className="text-lg">Rain: {data.rain} %</p>
+            <Divider className="mt-3" />
+
+            <p className="text-lg font-bold mt-2">Temperature Estimates</p>
+            <div className="flex justify-around">
+              <ForecastCard day="Day Two" temperature={data.threeDayForecast.temperature.dayOne} />
+              <ForecastCard day="Day Three" temperature={data.threeDayForecast.temperature.dayTwo} />
+              <ForecastCard day="Day Four" temperature={data.threeDayForecast.temperature.dayThree} />
             </div>
-          ) : (
-            <div>
-              <TiWeatherDownpour className="w-36 h-36" />
+            <Divider className="mt-3" />
+
+            <p className="text-lg font-bold mt-2">Humidity Estimates</p>
+            <div className="flex justify-around">
+              <ForecastCard day="Day Two" humidity={data.threeDayForecast.humidity.dayOne} />
+              <ForecastCard day="Day Three" humidity={data.threeDayForecast.humidity.dayTwo} />
+              <ForecastCard day="Day Four" humidity={data.threeDayForecast.humidity.dayThree} />
             </div>
-          )}
-          <p className="text-3xl font-bold">{data.temperature}°C</p>
-          <p className="text-lg">Humidity: {data.humidity}%</p>
-          <p className="text-lg">Wind: {data.wind} km/h</p>
-          <p className="text-lg">Rain: {data.rain} %</p>
-          <Divider className="mt-3" />
-      
-          <p className="text-lg font-bold mt-2">Temperature Estimates</p>
-          <div className="flex justify-around">
-            <ForecastCard day="Day Two" temperature={data.threeDayForecast.temperature.dayOne} />
-            <ForecastCard day="Day Three" temperature={data.threeDayForecast.temperature.dayTwo} />
-            <ForecastCard day="Day Four" temperature={data.threeDayForecast.temperature.dayThree} />
+            <Divider className="mt-3" />
+
+            <p className="text-lg font-bold mt-2">Wind Estimates</p>
+            <div className="flex justify-around">
+              <ForecastCard day="Day Two" wind={data.threeDayForecast.wind.dayOne} />
+              <ForecastCard day="Day Three" wind={data.threeDayForecast.wind.dayTwo} />
+              <ForecastCard day="Day Four" wind={data.threeDayForecast.wind.dayThree} />
+            </div>
+            <Divider className="mt-3" />
+
+            <p className="text-lg font-bold mt-2">Rain Estimates</p>
+            <div className="flex justify-around">
+              <ForecastCard day="Day Two" rain={data.threeDayForecast.rain.dayOne} />
+              <ForecastCard day="Day Three" rain={data.threeDayForecast.rain.dayTwo} />
+              <ForecastCard day="Day Four" rain={data.threeDayForecast.rain.dayThree} />
+            </div>
           </div>
-          <Divider className="mt-3" />
-      
-          <p className="text-lg font-bold mt-2">Humidity Estimates</p>
-          <div className="flex justify-around">
-            <ForecastCard day="Day Two" humidity={data.threeDayForecast.humidity.dayOne} />
-            <ForecastCard day="Day Three" humidity={data.threeDayForecast.humidity.dayTwo} />
-            <ForecastCard day="Day Four" humidity={data.threeDayForecast.humidity.dayThree} />
-          </div>
-          <Divider className="mt-3" />
-      
-          <p className="text-lg font-bold mt-2">Wind Estimates</p>
-          <div className="flex justify-around">
-            <ForecastCard day="Day Two" wind={data.threeDayForecast.wind.dayOne} />
-            <ForecastCard day="Day Three" wind={data.threeDayForecast.wind.dayTwo} />
-            <ForecastCard day="Day Four" wind={data.threeDayForecast.wind.dayThree} />
-          </div>
-          <Divider className="mt-3" />
-      
-          <p className="text-lg font-bold mt-2">Rain Estimates</p>
-          <div className="flex justify-around">
-            <ForecastCard day="Day Two" rain={data.threeDayForecast.rain.dayOne} />
-            <ForecastCard day="Day Three" rain={data.threeDayForecast.rain.dayTwo} />
-            <ForecastCard day="Day Four" rain={data.threeDayForecast.rain.dayThree} />
-          </div>
-        </div>
-      </CardBody>
-      
+        </CardBody>
+
       ) : (
         <CardBody>
           <div className="flex flex-col items-center">
@@ -164,28 +164,28 @@ const WeatherCard: React.FC = () => {
       {seismicData ? (
         <CardBody>
           <div className="flex flex-col items-center">
-          <h1 className="text-2xl font-bold">Seismic Data</h1>
-            <p className="text-lg">Magnitude: <span style={{color: 'blue'}}>{seismicData.magnitude}</span></p>
-            <p className="text-lg">Latitude: <span style={{color: 'blue'}}>{seismicData.latitude}</span></p>
-            <p className="text-lg">Longitude: <span style={{color: 'blue'}}>{seismicData.longitude}</span></p>
+            <h1 className="text-2xl font-bold">Seismic Data</h1>
+            <p className="text-lg">Magnitude: <span style={{ color: 'blue' }}>{seismicData.magnitude}</span></p>
+            <p className="text-lg">Latitude: <span style={{ color: 'blue' }}>{seismicData.latitude}</span></p>
+            <p className="text-lg">Longitude: <span style={{ color: 'blue' }}>{seismicData.longitude}</span></p>
           </div>
         </CardBody>
       ) : (
         <CardBody>
-  <div className="flex items-left">
-    {!searchClicked ? (
-      <>
-        <img src="https://th.bing.com/th/id/OIP.j8oglFHmWlpRNtT-qoS5AQHaHa?w=154&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" alt="Rain Cloud" className="w-24 h-24" />
-        <img src="src/components/icons8-rain.gif" alt="Rain Cloud" className="w-24 h-24" />
-        <img src="src/components/icons8-rain.gif" alt="Rain Cloud" className="w-24 h-24" />
-      </>
-    ) : (
-      <p className="text-xl font-bold text-center overflow-hidden overflow-ellipsis max-h-[5em]">
-        No seismic data available for {city.charAt(0).toUpperCase() + city.slice(1)}
-      </p>
-    )}
-  </div>
-</CardBody>
+          <div className="flex items-left">
+            {!searchClicked ? (
+              <>
+                <div className="powered-by-blockchain">
+                  Powered by Blockchain
+                </div>
+              </>
+            ) : (
+              <p className="text-xl font-bold text-center overflow-hidden overflow-ellipsis max-h-[5em]">
+                No seismic data available for {city.charAt(0).toUpperCase() + city.slice(1)}
+              </p>
+            )}
+          </div>
+        </CardBody>
 
       )}
       <Divider />

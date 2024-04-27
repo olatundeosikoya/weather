@@ -1,3 +1,19 @@
 .header {
   text-align: center;
 }
+
+.powered-by-blockchain {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3366ff;
+  /* Bevel effect */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  /* Centering */
+  text-align: center;
+  display: inline-block;
+  /* Remove top and bottom margins */
+  margin-top: 0;
+  margin-bottom: 0;
+  /* Optional: Add some padding */
+  padding: 10px;
+}
