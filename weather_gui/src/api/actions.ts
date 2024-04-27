@@ -1,7 +1,7 @@
 // actions.ts
 import axios, { AxiosError } from "axios";
 
-const API_URL = "https://potential-cod-j6q77jj4rj4fq9qg-3000.app.github.dev/api";
+const API_URL = "https://urban-space-giggle-9vj5577qjqvcpvwv-3000.app.github.dev/api";
 const SEISMIC_API_URL = "https://65ca483b3b05d29307e01640.mockapi.io/api/seismic";
 
 // actions.ts
