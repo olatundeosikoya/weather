@@ -1,3 +1,4 @@
+// Importing necessary components and hooks from libraries
 import {
   Card,
   CardHeader,
@@ -8,10 +9,12 @@ import {
 } from "@nextui-org/react";
 import { useState } from "react";
 import { TiWeatherDownpour, TiWeatherSunny } from "react-icons/ti";
-import { getWeatherData, getSeismicData } from "../api/actions";
-import ForecastCard from "./ForecastCard";
+import { getWeatherData, getSeismicData } from "../api/actions"; // Importing API actions
+import ForecastCard from "./ForecastCard"; // Importing custom component
 
+// WeatherCard component
 const WeatherCard: React.FC = () => {
+  // State variables for weather data, seismic data, loading state, city, error, and search click status
   const [data, setData] = useState<WeatherData>();
   const [seismicData, setSeismicData] = useState<SeismicData>();
   const [loadingState, setLoadingState] = useState(false);
@@ -29,10 +32,13 @@ const WeatherCard: React.FC = () => {
     "accra", "harare", "kampala", "dakar", "khartoum", "tunis"
   ];
 
+  // Function to handle search
   const handleSearch = () => {
     console.log("Fetching Weather Data...");
     console.log(city);
     setLoadingState(true);
+
+     // Fetch weather data
     getWeatherData(city)
       .then((res) => {
         setError("");
@@ -50,10 +56,14 @@ const WeatherCard: React.FC = () => {
       });
 
     console.log("Fetching Seismic Data...");
+
+    // Fetch seismic data
     getSeismicData(city)
       .then((res) => {
         setSeismicData(res);
       })
+
+      // Set error
       .catch((error) => {
         console.error(error);
         setSeismicData(undefined);
@@ -103,8 +113,11 @@ const WeatherCard: React.FC = () => {
       {data ? (
         <CardBody>
           <div className="flex flex-col items-center">
+          // Display city name
             <h1 className="text-3xl font-bold">{data.city.charAt(0).toUpperCase() + data.city.slice(1)}</h1>
-            <p className="text-sm text-gray-500">Today</p>
+            <p className="text-sm text-gray-500">Today</p> // Label for today's weather
+            
+            // Check if temperature is above 20
             {data.temperature > 20 ? (
               <div>
                 <TiWeatherSunny className="w-36 h-36" />
@@ -114,20 +127,26 @@ const WeatherCard: React.FC = () => {
                 <TiWeatherDownpour className="w-36 h-36" />
               </div>
             )}
-            <p className="text-3xl font-bold">{data.temperature}°C</p>
-            <p className="text-lg">Humidity: {data.humidity}%</p>
-            <p className="text-lg">Wind: {data.wind} km/h</p>
-            <p className="text-lg">Rain: {data.rain} %</p>
+
+           
+            <p className="text-3xl font-bold">{data.temperature}°C</p> // Display temperature
+            <p className="text-lg">Humidity: {data.humidity}%</p> // Display humidity
+            <p className="text-lg">Wind: {data.wind} km/h</p> // Display wind speed
+            <p className="text-lg">Rain: {data.rain} %</p> // Display rain probability
             <Divider className="mt-3" />
 
+            // Label for temperature estimates
             <p className="text-lg font-bold mt-2">Temperature Estimates</p>
             <div className="flex justify-around">
+
+            // Display temperature forecast for multiple days
               <ForecastCard day="Day Two" temperature={data.threeDayForecast.temperature.dayOne} />
               <ForecastCard day="Day Three" temperature={data.threeDayForecast.temperature.dayTwo} />
               <ForecastCard day="Day Four" temperature={data.threeDayForecast.temperature.dayThree} />
             </div>
             <Divider className="mt-3" />
 
+            // Display Humidity forecast for multiple days
             <p className="text-lg font-bold mt-2">Humidity Estimates</p>
             <div className="flex justify-around">
               <ForecastCard day="Day Two" humidity={data.threeDayForecast.humidity.dayOne} />
@@ -136,6 +155,7 @@ const WeatherCard: React.FC = () => {
             </div>
             <Divider className="mt-3" />
 
+            // Display wind forecast for multiple days
             <p className="text-lg font-bold mt-2">Wind Estimates</p>
             <div className="flex justify-around">
               <ForecastCard day="Day Two" wind={data.threeDayForecast.wind.dayOne} />
@@ -144,6 +164,7 @@ const WeatherCard: React.FC = () => {
             </div>
             <Divider className="mt-3" />
 
+            // Display rain forecast for multiple days
             <p className="text-lg font-bold mt-2">Rain Estimates</p>
             <div className="flex justify-around">
               <ForecastCard day="Day Two" rain={data.threeDayForecast.rain.dayOne} />
@@ -161,6 +182,8 @@ const WeatherCard: React.FC = () => {
         </CardBody>
       )}
       <Divider />
+
+      // Seismic data section to display magnitude, longitude, latitude
       {seismicData ? (
         <CardBody>
           <div className="flex flex-col items-center">
@@ -176,7 +199,7 @@ const WeatherCard: React.FC = () => {
             {!searchClicked ? (
               <>
                 <div className="powered-by-blockchain">
-                Powered by Blockchain
+                  Powered by Blockchain
                 </div>
               </>
             ) : (
